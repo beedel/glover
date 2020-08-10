@@ -1,0 +1,266 @@
+{% extends 'glover/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+	{{ profile.user.first_name }}'s Profile
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+
+	<div class="row my-5">
+
+        <div class="col-sm-12 col-lg-6">
+			<div id="carouselExampleIndicators" class="carousel slide col-lg-12 mb-5" data-ride="carousel">
+				<ol class="carousel-indicators">
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+					{% if profile.image2 %}
+						<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+					{% endif %}
+					{% if profile.image3 %}
+						<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					{% endif %}
+					{% if profile.image4 %}
+						<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+					{% endif %}
+					{% if profile.image5 %}
+						<li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+					{% endif %}
+				</ol>
+				<div class="carousel-inner">
+					<div class="carousel-item active">
+						{% if profile.image1 %}
+							<img class="d-block w-100" src="{{ profile.image1.url }}" alt="First slide">
+						{% else %}
+							<img class="d-block w-100" src="{% static 'images/default_user.jpg' %}" alt="First slide">
+						{% endif %}
+					</div>
+					{% if profile.image2 %}
+						<div class="carousel-item">
+							<img class="d-block w-100" src="{{ profile.image2.url }}" alt="Second slide">
+						</div>
+					{% endif %}
+					{% if profile.image3 %}
+						<div class="carousel-item">
+							<img class="d-block w-100" src="{{ profile.image3.url }}" alt="Third slide">
+						</div>
+					{% endif %}
+					{% if profile.image4 %}
+						<div class="carousel-item">
+							<img class="d-block w-100" src="{{ profile.image4.url }}" alt="Fourth slide">
+						</div>
+					{% endif %}
+					{% if profile.image5 %}
+						<div class="carousel-item img-fluid">
+							<img class="d-block w-100" src="{{ profile.image5.url }}" alt="Fifth slide">
+						</div>
+					{% endif %}
+				</div>
+				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+
+			<div class="flex-container row col-lg-12 justify-content-center px-0 m-0 mb-5">
+				{% if profile.image1 %}
+					<div class="flex-item">
+						<img class="small-img img-responsive img-link" src="{{ profile.image1.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+					</div>
+				{% endif %}
+
+				{% if profile.image2 %}
+					<div class="flex-item">
+						<img class="small-img img-responsive img-link" src="{{ profile.image2.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+					</div>
+				{% endif %}
+
+				{% if profile.image3 %}
+					<div class="flex-item">
+						<img class="small-img img-responsive img-link" src="{{ profile.image3.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+					</div>
+				{% endif %}
+
+				{% if profile.image4 %}
+					<div class="flex-item">
+						<img class="small-img img-responsive img-link" src="{{ profile.image4.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+					</div>
+				{% endif %}
+
+				{% if profile.image5 %}
+					<div class="flex-item">
+						<img class="small-img img-responsive img-link" src="{{ profile.image5.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+					</div>
+				{% endif %}
+			</div>
+
+			<form id="like" method="post" action="{% url 'glover:like' profile %}">
+				{% csrf_token %}
+				<div class="row col-12">
+					<div class="col-6">
+						<button class="btn btn-success btn-block text-uppercase mb-5 btn-lg" type="submit" name="like">
+							<strong>Like</strong>
+							<img class="profile-icon ml-2" src="{% static 'images/heart.png' %}" alt="like"/>
+						</button>
+					</div>
+					<div class="col-6">
+						<button class="btn btn-danger btn-block text-uppercase mb-5 btn-lg" type="submit" name="dislike">
+							<img class="profile-icon mr-2" src="{% static 'images/dislike.png' %}" alt="dislike"/>
+							<strong>Dislike</strong>
+						</button>
+					</div>
+				</div>
+			</form>
+			
+
+		</div>
+
+
+        <div class="col-md-12 col-lg-6">
+
+			<div class="mb-4">
+				<span class="display-4 text-uppercase">{{ profile.user.first_name }}, <small>{{ profile.get_age }}</small></span>
+				<hr>
+				<span><h5>
+					<img class="profile-icon mr-1" src="{% static 'images/school.png' %}" alt="icon"/>
+					{{ profile.course }}, {{ profile.get_year_in_display }}
+				</h5></span>
+			</div>
+
+            <div class="col-12 p-0">
+                <div class="card mt-5">
+                    <h6 class="card-header text-uppercase text-white">
+						<img class="profile-icon mr-1" src="{% static 'images/fingerprint.png' %}" alt="icon"/>
+						Bio
+					</h6>
+                    <div class="card-body">
+                        <p class="card-text text-size">{{ profile.bio }}</p>
+                    </div>
+                </div>
+            </div>
+
+			<div class="row">
+				<div class="col-6 pr-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/wave.png' %}" alt="icon"/>
+							Gender
+						</h6>
+						<div class="card-body">
+							<p class="card-text text-size">
+								{{ profile.get_gender_display }}
+							</p>
+						</div>
+                    </div>
+				</div>
+				<div class="col-6 pl-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/puzzle.png' %}" alt="icon"/>
+							Looking For
+						</h6>
+						<div class="card-body">
+							<p class="card-text text-size">
+								{{ profile.get_looking_for_display }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6 pr-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/location.png' %}" alt="icon"/>
+							Location
+						</h6>
+						<div class="card-body">
+							<p class="card-text text-size">
+								{{ profile.location }}
+							</p>
+						</div>
+                    </div>
+				</div>
+				<div class="col-6 pl-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/library.png' %}" alt="icon"/>
+							Library Floor
+						</h6>
+						<div class="card-body">
+							<p class="card-text text-size">
+								{{ profile.library_floor }}
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-6 pr-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/tea.png' %}" alt="icon"/>
+							Societies
+						</h6>
+						<div class="card-body">
+							<ul class="list-circles text-size">
+								{% for society in profile.get_societies %}
+									<li>{{ society.society }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-6 pl-1">
+					<div class="card mt-2">
+						<h6 class="card-header text-uppercase text-white">
+							<img class="profile-icon mr-1" src="{% static 'images/palette.png' %}" alt="icon"/>
+							Interests
+						</h6>
+						<div class="card-body">
+							<ul class="list-circles text-size">
+								{% for interest in profile.get_interests %}
+									<li>{{ interest.interest }}</li>
+								{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+
+$(document).ready(function() {
+
+	$(".carousel").carousel({
+		interval: 3000
+	})
+
+	var images = $(".small-img")
+	if (images.length > 1) {
+		for (let i=0; i < images.length; i++) {
+			var image = images[i]
+			$(image).on("click", function() {
+				$(".carousel").carousel(i)
+				$(".carousel").carousel("pause")
+			})
+		}
+	}
+});
+
+</script>
+{% endblock %}

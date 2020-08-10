@@ -1,0 +1,67 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+
+{% block title_block %}
+	My Matches
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="container">
+        <h1 class="text-center mb-4 MainHeadings"><strong>My Matches</strong></h1>
+
+        <div class="dropdown text-right mr-5">
+            <button class="btn btn-info dropdown-toggle text-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="profile-icon mr-3" src="{% static 'images/filter.png' %}" alt="filter"/>
+                Filter
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'glover:matches' %}">All: recently matched first</a>
+                <a class="dropdown-item" href="{% url 'glover:matches' %}?filter=name-a">Name: A &#8594; Z</a>
+                <a class="dropdown-item" href="{% url 'glover:matches' %}?filter=name-d">Name: Z &#8594; A</a>
+                <a class="dropdown-item" href="{% url 'glover:matches' %}?filter=messaged">Chat: chatting with</a>
+                <a class="dropdown-item" href="{% url 'glover:matches' %}?filter=not-messaged">Chat: not chatting with yet</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center col-lg-12 mt-4">
+
+        {% if profiles %}
+
+            {% for profile in profiles %}
+
+                <div class="col-sm-8 col-md-5 col-lg-3 justify-content-center">
+                    <div class="card text-center mb-4 profile-card">
+                        <div class="card-header card-title text-uppercase text-white">
+                            <div class="d-flex justify-content-center">
+                                <span class="p-1"><h5>{{ profile.user.first_name }}  </h5></span>
+                                <span class="p-1"><kbd>{{ profile.get_age }}</kbd></span>
+                            </div>
+                        </div>
+                        <a href="{% url 'glover:match-profile' profile.user.username %}">
+                            <div class="card-size">
+                                {% if profile.image1 %}
+                                    <img class="card-img-top img-link" src="{{ profile.image1.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+                                {% else %}
+                                    <img class="card-img-top img-link" src="{% static 'images/default_user.jpg' %}" alt="Default image" />
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <a class="btn btn-info btn-lg" href="{% url 'glover:user-messages' profile.user.username %}">
+                                <img class="profile-icon" src="{% static 'images/chat.png' %}" alt="DMs"/>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+            <div class="text-center mt-4">
+                <font size="5">You have no matches yet... Keep playing to find your match!</font>
+            </div>
+        {% endif %}
+        </div>
+    </div>
+{% endblock %}

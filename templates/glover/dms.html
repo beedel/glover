@@ -1,0 +1,57 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+{% load humanize %}
+
+{% block title_block %}
+    Chat with {{ profile.user.first_name }}
+{% endblock %}
+
+{%block body_block %}
+
+<div class="row mt-4">
+
+    <div class="col-lg-4 col-md-12">
+
+        <div class="ml-3 mb-4">
+            <span class="allign-middle text-size">
+                <a class="btn btn-sm btn-success mr-3" href="{% url 'glover:matches' %}?filter=not-messaged">
+                    <img class="profile-icon" src="{% static 'images/add.png' %}" alt="add"/>
+                </a>
+                Start a new conversation
+            </span>
+        </div>
+
+        <div class="col-12">
+            <div class="card">
+                <div class="card chat-with-bar square scrollbar-cyan bordered-cyan">
+                    <div class="card-body text-white">
+
+                        {% if users_messaged %}        
+                            {% for u in users_messaged %}
+                                <a class="card-a" href="{% url 'glover:user-messages' u.user.username %}">
+                                    <div class="img-link col-12 p-1 bg-white rounded mb-2">
+                                        {% if u.user.profile.image1 %}  
+                                            <img class="small-img img-responsive rounded" src="{{ u.user.profile.image1.url }}" alt="{{ u.user.first_name }}"/>
+                                        {% else %}
+                                            <img class="small-img img-responsive rounded" src="{% static 'images/default_user.jpg' %}" alt="{{ u.user.first_name }}"/>
+                                        {% endif %}
+                                        <font size="5">{{ u.user.first_name }}</font>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="col-lg-8 col-md-12 mt-5 mb-5 text-center">
+        {% if not users_messaged %}  
+            <font size="4">You have no ongoing conversations. Pick a <a href="{% url 'glover:matches' %}">match</a> to chat with!</font>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}

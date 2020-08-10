@@ -1,0 +1,82 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    Discover
+{% endblock %}
+
+{% block body_block %}
+
+    <div class="container">
+        <h1 class="text-center mb-4 MainHeadings"><strong>Discover</strong></h1>
+
+        <div class="dropdown text-right mr-5">
+            <button class="btn btn-info dropdown-toggle text-size" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img class="profile-icon mr-3" src="{% static 'images/filter.png' %}" alt="filter"/>
+                Filter
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="{% url 'glover:discover' %}">All: recently joined first</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=age">Age: youngest &#8594; oldest</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=age-reverse">Age: oldest &#8594; youngest</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=course">Course: {{ user.profile.course }}</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=year-in">Year In: {{ user.profile.year_in }}</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=interest">Interests: 1+ matching</a>
+                <a class="dropdown-item" href="{% url 'glover:discover' %}?filter=society">Societies: 1+ matching</a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center col-lg-12 mt-4">
+
+        {% if profiles %}
+
+            {% for profile in profiles %}
+
+                <div class="col-sm-8 col-md-5 col-lg-3 justify-content-center">
+
+                    <div class="card text-center mb-4 profile-card">
+                        <div class="card-header card-title text-uppercase text-white">
+                            <div class="d-flex justify-content-center">
+                                <span class="p-1"><h5>{{ profile.user.first_name }}  </h5></span>
+                                <span class="p-1"><kbd>{{ profile.get_age }}</kbd></span>
+                            </div>
+                        </div>
+                        <a href="{% url 'glover:discover_profile' profile.user.username %}">
+                            <div class="card-size">
+                                {% if profile.image1 %}
+                                    <img class="card-img-top img-link" src="{{ profile.image1.url }}" alt="Picture of {{ profile.user.first_name }}"/>
+                                {% else %}
+                                    <img class="card-img-top img-link" src="{% static 'images/default_user.jpg' %}" alt="Default image" />
+                                {% endif %}
+                            </div>
+                        </a>
+                        <div class="card-body">
+                            <form id="like" method="post" action="{% url 'glover:like' profile %}">
+                                {% csrf_token %}
+                                <div class="btn-group row">
+                                    <div class="col-6">
+                                        <button class="btn btn-success" type="submit" name="like"><img class="profile-icon" src="{% static 'images/heart.png' %}" /></button>
+                                    </div>
+                                    <div class="col-6">
+                                        <button class="btn btn-danger" type="submit" name="dislike"><img class="profile-icon" src="{% static 'images/dislike.png' %}" /></button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% else %}
+            <div class="text-center mt-4">
+                <font size="5">There are no new profiles to discover... Come back later!</font>
+            </div>
+        {% endif %}
+
+
+        </div>
+
+
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block title_block %}
+	Register
+{% endblock %}
+
+{% block body_block %}
+	<div class="container">
+		<div class="col-xs-12 col-sm-12 col-md-10 col-lg-6 offset-lg-3 offset-md-1">
+			<h1 class="text-center mb-4 MainHeadings"><strong>Register</strong></h1>
+			<form id="user_form" method="post" action="{% url 'glover:register' %}">
+				{% csrf_token %}
+
+				{{ registration_form|crispy }}
+
+				<br/>
+				<!-- Provide a button to click to submit the form. -->
+				<div class="text-center">
+					<input type="submit" name="submit" class="btn btn-lg btn-primary px-5" value="SIGN UP" />
+				</div>
+			</form>
+		</div>
+		
+		<br/>
+		<div class="text-center">
+			<p>Already have an account?  <a href="{% url 'glover:login' %}">Sign In!</a></p>
+			<br/><br/>
+		</div>
+	</div>
+{% endblock %}
+
+{% block js %}
+
+<script>
+  $(document).ready(function() {
+   $("#id_dob").datepicker({
+      format:'dd/mm/yyyy',
+	  maxDate: '-1d',
+	  changeYear: true,
+	  yearRange: '1920:2020',
+	  dateFormat: "dd/mm/yy"
+    });
+  })
+ 
+
+</script>
+{% endblock %}

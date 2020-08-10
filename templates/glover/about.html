@@ -1,0 +1,190 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+
+{% block title_block %}
+    About Us
+{% endblock %}
+
+{% block body_block %}  
+	<div class="container">
+			<h1 class="text-center mb-4 MainHeadings"><strong>About Glover</strong></h1>
+		
+		<div class="text-center">
+			<font size="5">Our mission is to give single students at the University of Glasgow the opportunity to meet the love of their life. </font>
+		</div>
+
+		<br><hr>
+
+		<h2 div class="text-center my-5 SubHeadings"><b>Our team</b></h2>
+		<div class="my-5 text-center">
+			<font size="5">Meet the five co-founders of Glover. We are a team of hopeless romantics and all of us are avid users of Glover.</font>
+		</div>
+
+		<div class="row text-center justify-content-md-center">
+			<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="mb-4">
+				<div class="card-size">
+					<img class="circular--square" src="{% static 'images/Vrinda.jpg' %}">
+				</div>
+				<div class="card-body">
+					<h5 class="card-title teamName">Vrinda</h5>
+					<p class="card-text"><font size="4"><b>Chief Technology Officer</b></font><br><i>"You can't blame gravity for falling in love."</i></p>
+				</div>
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="mb-4">
+				<div class="card-size">
+					<img class="circular--square" src="{% static 'images/Tomas.jpg' %}">
+					</div>
+					<div class="card-body">
+					<h5 class="card-title teamName">Tomas</h5>
+					<p class="card-text"><font size="4"><b>Head of Customer Care</b></font><br><i>"Love is born from understanding."</i></p>  
+				</div>
+			</div>
+			</div>
+			<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="mb-4">
+					<div class="card-size">
+						<img class="circular--square" src="{% static 'images/Fraser.jpg' %}">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title teamName">Fraser</h5>
+						<p class="card-text"><font size="4"><b>Legal Advisor</b></font><br><i>"The heart wants what it wants."</i></p>  
+					</div>        
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="mb-4">
+					<div class="card-size">
+						<img class="circular--square" src="{% static 'images/Ilona.JPG' %}">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title teamName">Ilona</h5>
+						<p class="card-text"><font size="4"><b>Data Protection Expert</b></font><br><i>"It's amazing how a person who was once just a stranger, can suddenly mean the world to you."</i></p>    
+					</div>        
+				</div>
+			</div>
+			<div class="col-sm-12 col-md-6 col-lg-4">
+				<div class="mb-4">
+					<div class="card-size">
+						<img class="circular--square" src="{% static 'images/Barbara.jpg' %}">
+					</div>
+					<div class="card-body">
+						<h5 class="card-title teamName">Barbara</h5>
+						<p class="card-text"><font size="4"><b>Strategic Marketing Coordinator</b></font><br><i>"True love doesn't have a happy ending... because true love doesn't end."</i></p>    
+					</div>      
+				</div>
+			</div>
+		</div>
+
+		<br><hr>
+
+		<h2 class="text-center my-5 SubHeadings"><b>Testimonials</b></h2>
+		<!––Source: https://mdbootstrap.com/docs/jquery/javascript/carousel/––> 
+		<!--Carousel Wrapper-->
+		<div id="carousel-example-2" class="carousel slide carousel-fade" data-ride="carousel" data-interval="50000">
+			<!--Indicators-->
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-example-2" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-example-2" data-slide-to="1"></li>
+				<li data-target="#carousel-example-2" data-slide-to="2"></li>
+			</ol>
+			<!--/.Indicators-->
+			<!--Slides-->
+			<div class="carousel-inner" role="listbox">
+				<div class="carousel-item active">
+					<div class="view">
+						<img class="d-block w-100" src="{% static 'images/magic.jpg' %}" alt="First slide">
+						<div class="mask rgba-black-light"></div>
+					</div>
+					<div class="carousel-caption">
+						<h3 class="h3-responsive">Daisy, 23</h3>
+						<p><b>"Glover matched my interests perfectly with such wonderful people. I am pleased to say that I have found my soulmate."</b></p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<!--Mask color-->
+					<div class="view">
+						<img class="d-block w-100" src="{% static 'images/waterfall.jpg' %}" alt="Second slide">
+						<div class="mask rgba-black-strong"></div>
+					</div>
+					<div class="carousel-caption">
+						<h3 class="h3-responsive">Jacob, 40</h3>
+						<p><b>"I am a single mature student which felt very isolating. Glover connected me with others alike."</b></p>
+					</div>
+				</div>
+				<div class="carousel-item">
+					<!--Mask color-->
+					<div class="view">
+						<img class="d-block w-100" src="{% static 'images/mountains.jpg' %}" alt="Third slide">
+						<div class="mask rgba-black-slight"></div>
+					</div>
+					<div class="carousel-caption">
+						<h3 class="h3-responsive">Joe, 21</h3>
+						<p><b>"I love Glover because it is so versatile. You can find love, but you can also just have a good time!"</b></p>
+					</div>
+				</div>
+			</div>
+			<!--/.Slides-->
+			<!--Controls-->
+			<a class="carousel-control-prev" href="#carousel-example-2" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carousel-example-2" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
+			<!--/.Controls-->
+		</div>
+		<!--/.Carousel Wrapper-->
+
+		<br><hr>
+
+		<h2 class="text-center my-5 SubHeadings"><b>Numbers Don't Lie</b></h2>
+		<div class="text-center mb-4">
+			<font size="5">Glover is engaging, fun and easy to use. The majority of our users are here every day!</font>
+		</div>
+
+		<! –– Source: https://markus.oberlehner.net/blog/pure-css-animated-svg-circle-chart/ ––>
+
+		<div class="row text-center justify-content-md-center">
+			<section class="col-lg-4 mb-4">
+				<h2 class="mb-4">Glover is free for all!</h2>
+				<svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+					<circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" stroke-dasharray="100,00" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<g class="circle-chart__info">
+						<text class="circle-chart__percent" x="16.91549431" y="15.5" alignment-baseline="central" text-anchor="middle" font-size="8">100%</text>
+						<text class="circle-chart__subline" x="16.91549431" y="20.5" alignment-baseline="central" text-anchor="middle" font-size="2">love the unlimited access</text>
+					</g>
+				</svg>
+			</section>
+			
+			<section class="col-lg-4 mb-4">
+				<h2 class="mb-4">Our users come back</h2>
+				<svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+					<circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" stroke-dasharray="70,100" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<g class="circle-chart__info">
+						<text class="circle-chart__percent" x="16.91549431" y="15.5" alignment-baseline="central" text-anchor="middle" font-size="8">68%</text>
+						<text class="circle-chart__subline" x="16.91549431" y="20.5" alignment-baseline="central" text-anchor="middle" font-size="2">daily users</text>
+					</g>
+				</svg>
+			</section>
+			
+			<section class="col-lg-4 mb-4">
+				<h2 class="mb-4">Glover is simple to use</h2>
+				<svg class="circle-chart" viewbox="0 0 33.83098862 33.83098862" width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+					<circle class="circle-chart__background" stroke="#efefef" stroke-width="2" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<circle class="circle-chart__circle" stroke="#00acc1" stroke-width="2" stroke-dasharray="87,100" stroke-linecap="round" fill="none" cx="16.91549431" cy="16.91549431" r="15.91549431" />
+					<g class="circle-chart__info">
+						<text class="circle-chart__percent" x="16.91549431" y="15.5" alignment-baseline="central" text-anchor="middle" font-size="8">87%</text>
+						<text class="circle-chart__subline" x="16.91549431" y="20.5" alignment-baseline="central" text-anchor="middle" font-size="2">like our app's feel</text>
+					</g>
+				</svg>
+			</section>
+		</div>
+	</div>
+{% endblock %}

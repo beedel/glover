@@ -1,0 +1,47 @@
+/* Pie charts on the About page */
+
+.circle-chart {
+  width: 80%;
+}
+
+.circle-chart__circle {
+  animation: circle-chart-fill 2s reverse; /* 1 */ 
+  transform: rotate(-90deg); /* 2, 3 */
+  transform-origin: center; /* 4 */
+}
+
+.circle-chart__info {
+  animation: circle-chart-appear 6s forwards;
+  opacity: 0;
+  transform: translateY(0.3em);
+}
+
+@keyframes circle-chart-fill {
+  to { stroke-dasharray: 0 100; }
+}
+
+@keyframes circle-chart-appear {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Layout styles only, not needed for functionality */
+html {
+  font-family: sans-serif;
+  padding-right: 1em;
+  padding-left: 1em;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  
+}
+
+@media (min-width: 31em) {
+  .grid {
+    grid-template-columns: 400px 400px 400px;
+  }
+}

@@ -1,0 +1,13 @@
+{% extends 'glover/base.html' %}
+{% load static %}
+
+
+{% block body_block %}
+    {% if like %}
+        {% if like.is_liked %}
+            <p>{{ like.profile }} liked {{ like.profile_liked }}</p>
+        {% else %}
+            <p>{{ like.profile }} disliked {{ like.profile_liked }}</p>
+        {% endif %}
+    {% endif %}
+{% endblock %}
